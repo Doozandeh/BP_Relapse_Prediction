@@ -1,0 +1,8 @@
+from bs4 import BeautifulSoup
+
+ss=open('MyActivity.html', encoding='utf-8')
+soup = BeautifulSoup(ss, "html.parser")
+
+for item in soup.findAll('div',attrs={'class':'content-cell mdl-cell mdl-cell--6-col mdl-typography--body-1'}):
+    print(item)
+    print('++++++')
