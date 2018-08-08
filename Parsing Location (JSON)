@@ -1,0 +1,9 @@
+import json
+
+with open('Location History.json') as f:
+    data = json.load(f)
+    for dd in data['locations']:
+        print(dd['timestampMs'])
+        print(dd['latitudeE7'])
+        print(dd['longitudeE7'])
+        print('************')
