@@ -1,0 +1,25 @@
+import mailbox
+import csv
+
+
+def extractbody(msg):
+    global b5
+    payload = msg.get_payload()
+    if msg.is_multipart():
+        for subMsg in payload:
+            extractbody(subMsg)
+    else:
+        if msg.get_content_type() == 'text/plain':
+            b5 = payload[:200]
+
+
+
+
+writer = csv.writer(open('t.csv', "w"))
+for message in mailbox.mbox('x.mbox'):
+    extractbody(message)
+    b1 = message['subject']
+    b2 = message['from']
+    b3 = message['to']
+    b4 = message['date']
+    writer.writerow([b1, b2, b3, b4, b5.encode("utf-8")])
