@@ -1,0 +1,25 @@
+import nltk
+nltk.download('vader_lexicon')
+nltk.download('punkt')
+
+
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+san = SentimentIntensityAnalyzer()
+
+message_text = """Text"""
+
+sent = san.polarity_scores(message_text)
+
+for key in sorted(sent):
+        print('{0}: {1}, '.format(key, sent[key]), end='')
+
+
+print('\n')
+
+if sent['compound'] < -0.5:
+    print('negative')
+elif sent['compound'] > 0.5:
+    print('positive')
+else:
+    print('neutral')
